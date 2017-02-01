@@ -64,10 +64,10 @@ def fcn2min(params, x, data):
 	"""model decaying sine wave, subtract data"""
 	amp = params['amp']
 	shift = params['shift']
-    omega = params['omega']
-    decay = params['decay']
-    model = amp * np.sin(x * omega + shift) * np.exp(-x*x*decay)
-    return model - data
+	omega = params['omega']
+	decay = params['decay']
+	model = amp * np.sin(x * omega + shift) * np.exp(-x*x*decay)
+	return model - data
     #WHY RETURN MODEL - DATA? #answer: must return residuals to be minimized 
 
 #Create parameter set

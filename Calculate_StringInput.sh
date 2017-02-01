@@ -57,7 +57,8 @@ fi
 /usr/bin/msToGlf -in $1.txt -out $1_reads -regLen $N_SITES -singleOut 1 -depth $SEQ_DEPTH -err $ERR_RATE -pileup 0 -Nsites 0
 
 #Gives full sequence 
-/usr/bin/angsd -glf $1_reads.glf.gz -fai reference.fa.fai -nInd $N_IND -doMajorMinor 1 -doPost 1 -doMaf 1 -doGeno 32 -out $1_reads.testLD -isSim 1 -minMaf $MINMAF
+/usr/bin/angsd -glf $1_reads.glf.gz -fai reference.fa.fai -nInd $N_IND -doMajorMinor 1 -doPost 1 -doMaf 1 -doGeno 32 -out $1_reads.testLD -isSim 1 
+#-minMaf $MINMAF
 
 #Unzip output files
 gunzip -f $1_reads.testLD.geno.gz
@@ -70,7 +71,8 @@ zcat $1_reads.testLD.mafs.gz | cut -f 1,2 | tail -n +2 > $1_pos.txt
 NS=`cat $1_pos.txt | wc -l` 
 
 #Run ngsLD
-/usr/bin/ngsLD --verbose 1 --n_ind $N_IND --n_sites $NS --geno $1_reads.testLD.geno --probs --pos $1_pos.txt --max_kb_dist 10 --min_maf $MINMAF --rnd_sample 0.05 > $1_reads.testLD.ld
+/usr/bin/ngsLD --verbose 1 --n_ind $N_IND --n_sites $NS --geno $1_reads.testLD.geno --probs --pos $1_pos.txt --max_kb_dist 1000 --rnd_sample 0.05 > $1_reads.testLD.ld
+#--min_maf $MINMAF
 
 ########################################################################
 # RETURN INPUT PARAMETERS                                              #
