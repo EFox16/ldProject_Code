@@ -16,8 +16,8 @@ x = np.linspace(0, 3, 50)
 data = 20*np.exp(-1.5*x) + np.random.normal(size=len(x), scale=0.1)
 
 #Plot data
-plt.plot(x, data, 'ro', label="Original Data")
-plt.show()
+#~ plt.plot(x, data, 'ro', label="Original Data")
+#~ plt.show()
 
 #Function
 def fcn2min(params, x, data):
@@ -33,15 +33,13 @@ params.add('init', value= 19, max=20)
 params.add('lam', value=2)
 
 #Fit with least squares
-minime = Minimizer(fcn2min, params, fcn_args=(x, data))
-kws = {'options': {'maxiter':10}}
-result = minime.minimize()
+result = minimize(fcn2min, params, args=(x,), kws={'data':data})
 
-#Final result
+#Model line
 final = data + result.residual
 
 #Reports
-report_fit(result)
+print(fit_report(result))
 
 #Plot Results
 import pylab
@@ -49,6 +47,4 @@ pylab.plot(x, data, 'k+')
 pylab.plot(x, final, 'r')
 pylab.show()
 
-#OTHER WAY
-out = minimize(fcn2min, params, args=(x,), kws={'data':data})
-print(fit_report(out))
+

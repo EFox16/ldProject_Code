@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-"""Practicing minimize from lmfit with a gamma function. Modelled after 03_lmfitFreehand_Exponential Decay and https://en.wikipedia.org/wiki/Gamma_distribution"""
+"""Practicing minimize from lmfit with a gamma function. Modelled after 03_lmfitFreehand_Exponential Decay, http://www.intmath.com/blog/mathematics/factorials-and-the-gamma-function-4350, and https://en.wikipedia.org/wiki/Gamma_distribution"""
 
 ___author__ = "Emma Fox (e.fox16@imperial.ac.uk)"
 __version__ = "0.0.1"
@@ -28,8 +28,8 @@ def fcn2min(params, x, data):
 
 #Create parameter set
 params = Parameters()
-params.add('k', value=1, min=0)
-params.add('t', value=1, min=0)
+params.add('k', value=1)
+params.add('t', value=1)
 
 #Fit with least squares
 minime = Minimizer(fcn2min, params, fcn_args=(x,data))
