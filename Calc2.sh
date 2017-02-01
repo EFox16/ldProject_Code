@@ -69,7 +69,7 @@ do
 		N_IND=$N_IND_S2
 		MINMAF=$(echo "scale=2; 1/$N_SAM_S2" | bc)
 	fi 
-	
+		
 #Gives full sequence 
 	/usr/bin/angsd -glf $SubName.reads.glf.gz -fai reference.fa.fai -nInd $N_IND -doMajorMinor 1 -doPost 1 -doMaf 1 -doGeno 32 -out $SubName.reads.testLD -isSim 1 -minMaf $MINMAF
 

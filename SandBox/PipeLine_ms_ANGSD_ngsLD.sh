@@ -30,7 +30,7 @@ N_SITES=750000
 #number of sites to simulate
 
 #Run ms to get simulated variable sites
-../Thesis/Packages/msdir/ms $N_SAM $N_REPS -t $THETA -r $RHO $N_SITES > constant.txt
+/usr/bin/ms $N_SAM $N_REPS -t $THETA -r $RHO $N_SITES > constant.txt
  
 #########
 # ANGSD #
@@ -48,7 +48,7 @@ N_IND=$((N_SAM / 2))
 
 
 #Convert to glf
-../Thesis/Packages/angsd/misc/msToGlf -in constant.txt -out constant_reads -regLen $N_SITES -singleOut 1 -depth $SEQ_DEPTH -err $ERR_RATE -pileup 0 -Nsites 0
+/usr/bin/msToGlf -in constant.txt -out constant_reads -regLen $N_SITES -singleOut 1 -depth $SEQ_DEPTH -err $ERR_RATE -pileup 0 -Nsites 0
 
 #Need to create fasta file
 Rscript -e 'cat(">reference\n",paste(rep("A",1e6),sep="", collapse=""),"\n",sep="")' > reference.fa 
@@ -57,7 +57,7 @@ Rscript -e 'cat(">reference\n",paste(rep("A",1e6),sep="", collapse=""),"\n",sep=
 samtools faidx reference.fa #should give reference.fa.fai
 
 #Gives full sequence 
-../Thesis/Packages/angsd/angsd -glf constant_reads.glf.gz -fai reference.fa.fai -nInd $N_IND -doMajorMinor 1 -doPost 1 -doMaf 1 -doGeno 32 -out constant_reads.testLD -isSim 1 -minMaf 0.03
+/usr/bin/angsd -glf constant_reads.glf.gz -fai reference.fa.fai -nInd $N_IND -doMajorMinor 1 -doPost 1 -doMaf 1 -doGeno 32 -out constant_reads.testLD -isSim 1 -minMaf 0.03
 
 #Unzip output files
 gunzip -f constant_reads.testLD.geno.gz
@@ -72,7 +72,7 @@ zcat constant_reads.testLD.mafs.gz | cut -f 1,2 | tail -n +2 > constant_pos.txt
 NS=`cat constant_pos.txt | wc -l` 
 
 #Run ngsLD
-../Thesis/Packages/ngsLD/ngsLD --verbose 1 --n_ind $N_IND --n_sites $NS --geno constant_reads.testLD.geno --probs --pos constant_pos.txt --max_kb_dist 10 --min_maf 0.05 --rnd_sample 0.05 > constant_reads.testLD.ld
+/usr/bin/ngsLD --verbose 1 --n_ind $N_IND --n_sites $NS --geno constant_reads.testLD.geno --probs --pos constant_pos.txt --max_kb_dist 10 --min_maf 0.05 --rnd_sample 0.05 > constant_reads.testLD.ld
 
 #Return input parameters
 echo "VALUE OF SET PARAMETERS:"
@@ -202,3 +202,5 @@ B_NS=`cat bottleneck_pos.txt | wc -l`
 #Return input parameters
 echo "VALUE OF SET PARAMETERS:"
 echo "N_SAM" $N_SAM "N_REPS" $N_REPS "THETA" $THETA "RHO" $RHO "N_SITES" $N_SITES "SEQ_DEPTH" $SEQ_DEPTH "ERR_RATE" $ERR_RATE "N_IND" $N_IND "B_NS" $B_NS "B_GEN" $B_GEN "B_SIZE" $B_SIZE
+
+

@@ -31,6 +31,8 @@ RHO=$THETA
 N_SITES=$5 
 SEQ_DEPTH=$6 
 ERR_RATE=$7
+
+#Calculated variables
 N_IND=$((N_SAM / 2))
 MINMAF=$(echo "scale=2; 1/$N_SAM" | bc)
 
@@ -92,4 +94,4 @@ fi
 ########################################################################
 # GRAPH LD RESULTS                                                     #
 ########################################################################
-#~ Rscript ../Graphing.R $1_reads.testLD.ld
+Rscript ../Graphing.R $1_reads.testLD.ld
