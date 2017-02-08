@@ -12,8 +12,7 @@ __version__ = "0.0.1"
 import sys
 from lmfit import minimize, Minimizer, Parameters, Parameter, report_fit, fit_report
 import numpy as np
-import matplotlib.pyplot as plt
-import pylab
+import os
 import csv
 
 ########################################################################
@@ -137,13 +136,17 @@ except:
 	POLY_b="EMPTY"
 	POLY_c="EMPTY"
 
-#~ with open('%s_FitParams.csv' % ldFile, 'w') as csvfile:
-	#~ ResultFile = csv.writer(csvfile, delimiter=',', quotechar='|')
-	#~ ResultFile.writerow(["Model", "Parameter", "Value"])
-	#~ ResultFile.writerow(["EXP", "init", EXP_init])
-	#~ ResultFile.writerow(["EXP", "lam", EXP_lam])
-	#~ ResultFile.writerow(["GAM", "k", GAM_k])
-	#~ ResultFile.writerow(["GAM", "t", GAM_t])
-	#~ ResultFile.writerow(["POLY", "a", POLY_a])
-	#~ ResultFile.writerow(["POLY", "b", POLY_b])
-	#~ ResultFile.writerow(["POLY", "c", POLY_c])
+FileName, Exten = os.path.splitext(sys.argv[1])
+FileName, Exten = os.path.splitext(FileName)
+ResultName = '%s_FitParams.csv' % FileName
+
+with open(ResultName, 'wb') as csvfile:
+	ResultFile = csv.writer(csvfile, delimiter=',', quotechar='|')
+	ResultFile.writerow(["Model", "Parameter", "Value"])
+	ResultFile.writerow(["EXP", "init", EXP_init])
+	ResultFile.writerow(["EXP", "lam", EXP_lam])
+	ResultFile.writerow(["GAM", "k", GAM_k])
+	ResultFile.writerow(["GAM", "t", GAM_t])
+	ResultFile.writerow(["POLY", "a", POLY_a])
+	ResultFile.writerow(["POLY", "b", POLY_b])
+	ResultFile.writerow(["POLY", "c", POLY_c])

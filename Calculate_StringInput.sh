@@ -70,8 +70,8 @@ zcat $1_reads.testLD.mafs.gz | cut -f 1,2 | tail -n +2 > $1_pos.txt
 NS=`cat $1_pos.txt | wc -l` 
 
 #Run ngsLD
-/usr/bin/ngsLD --verbose 1 --n_ind $N_IND --n_sites $NS --geno $1_reads.testLD.geno --probs --pos $1_pos.txt --max_kb_dist 1000 --rnd_sample 0.05 > $1_reads.testLD.ld
-#--min_maf $MINMAF
+/usr/bin/ngsLD --verbose 1 --n_ind $N_IND --n_sites $NS --geno $1_reads.testLD.geno --probs --pos $1_pos.txt --max_kb_dist 1000 --min_maf $MINMAF --rnd_sample 0.05 > $1_reads.testLD.ld
+
 
 ########################################################################
 # RETURN INPUT PARAMETERS                                              #
