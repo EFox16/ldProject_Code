@@ -10,6 +10,7 @@ __version__ = "0.0.1"
 from lmfit import minimize, Minimizer, Parameters, Parameter, report_fit, fit_report
 import numpy as np
 import matplotlib.pyplot as plt
+import csv
 
 #Create data
 x = np.linspace(0, 3, 50)

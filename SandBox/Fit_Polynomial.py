@@ -23,22 +23,22 @@ data=r2Pear
 
 ##FUNCTIONS
 #Function
-def POLY(params, x, data):
+def POLY(paramsPOLY, x, data):
 	"""Polynomial function"""
-	a = params['a']
-	b = params['b']
-	c = params['c']
+	a = paramsPOLY['a']
+	b = paramsPOLY['b']
+	c = paramsPOLY['c']
 	model = a*x**2 + b*x + c
 	return model - data
 
 #Create parameter set
-params = Parameters()
-params.add('a', value=1)
-params.add('b', value=1)
-params.add('c', value=1)
+paramsPOLY = Parameters()
+paramsPOLY.add('a', value=1)
+paramsPOLY.add('b', value=1)
+paramsPOLY.add('c', value=1)
 
 #Fit with least squares
-resultPOLY = minimize(POLY, params, args=(x,), kws={'data':data})
+resultPOLY = minimize(POLY, paramsPOLY, args=(x,), kws={'data':data})
 
 #Model line
 final = data + resultPOLY.residual

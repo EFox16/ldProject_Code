@@ -34,7 +34,7 @@ ERR_RATE=$7
 
 #Calculated variables
 N_IND=$((N_SAM / 2))
-MINMAF=$(echo "scale=2; 1/$N_SAM" | bc)
+MINMAF=$(echo "scale=2; 2/$N_SAM" | bc)
 
 ########################################################################
 # RUN MS                                                               #
@@ -57,8 +57,7 @@ fi
 /usr/bin/msToGlf -in $1.txt -out $1_reads -regLen $N_SITES -singleOut 1 -depth $SEQ_DEPTH -err $ERR_RATE -pileup 0 -Nsites 0
 
 #Gives full sequence 
-/usr/bin/angsd -glf $1_reads.glf.gz -fai reference.fa.fai -nInd $N_IND -doMajorMinor 1 -doPost 1 -doMaf 1 -doGeno 32 -out $1_reads.testLD -isSim 1 
-#-minMaf $MINMAF
+/usr/bin/angsd -glf $1_reads.glf.gz -fai reference.fa.fai -nInd $N_IND -doMajorMinor 1 -doPost 1 -doMaf 1 -doGeno 32 -out $1_reads.testLD -isSim 1 -minMaf $MINMAF
 
 #Unzip output files
 gunzip -f $1_reads.testLD.geno.gz
