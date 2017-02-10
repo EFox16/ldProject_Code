@@ -5,10 +5,11 @@
 #Used to graph the results of 3 ld decay models
 
 require(ggplot2)
-library(tools)
+require(tools)
 
 args = commandArgs(trailingOnly = TRUE)
 FileName <- basename(file_path_sans_ext(args[2]))
+Path<-dirname(args[2])
 
 # Import ld data
 LD_Data <- read.table(args[1])
@@ -26,9 +27,15 @@ b<-Model_Data[6,3]
 c<-Model_Data[7,3]
 
 #Plot the three curves
-jpeg(file=paste(FileName,"_ModelPlot.jpg", sep = ""))
-ggplot(LD_Data, aes(x=Distance, y=R2)) + geom_point() + 
-  stat_function(fun=function(x) init * exp(-lam * x), geom="line", aes(colour="EXP")) +
-  stat_function(fun=function(x) exp(-x * k) * x^t, geom="line", aes(colour="GAM")) +
-  stat_function(fun=function(x) a*x^2 + b*x + c, geom="line", aes(colour="POLY")) 
+FitPlot<-ggplot(LD_Data, aes(x=Distance, y=R2)) + geom_point()
+FitPlot<-FitPlot + try(stat_function(fun=function(x) init * exp(-lam * x), geom="line", aes(colour="EXP")), silent = T)
+FitPlot<-FitPlot + try(stat_function(fun=function(x) exp(-x * k) * x^t, geom="line", aes(colour="GAM")), silent = T)
+FitPlot<-FitPlot + try(stat_function(fun=function(x) a*x^2 + b*x + c, geom="line", aes(colour="POLY")), silent = T)
+
+#Save to jpg
+jpeg(file=paste(Path,"/",FileName,"_ModelPlot.jpg", sep = ""))
+print(FitPlot)
 dev.off()
+
+
+

@@ -3,7 +3,6 @@
 # Script: Calculate.sh
 # Desc: Pipeline using ms to simulate, ANGSD to transform the files, and ngsLD to analyze with command line argument inputs
 # Arguments: set name, number of samples, number of repetitions, theta, number of sites, sequencing depth, error rate, AND exponential growth rate OR bottleneck time and magnitude 
-# Date: 23 JAN 2017
 
 ########################################################################
 # CREATE RESULTS FOLDER with reference sequence                        #
@@ -92,7 +91,21 @@ then
 	echo "Simulation Events="$SIMULATION_EVENTS >> $1_PARAMETERS.txt
 fi
 
+
 ########################################################################
-# GRAPH LD RESULTS                                                     #
+# MODEL FITTING                                                        #
 ########################################################################
-#Rscript ../Graphing.R $1_reads.testLD.ld
+
+python ../Fit_3Models.py $1_reads.testLD.ld
+
+########################################################################
+# PLOT FITTED PARAMETERS 											   #
+########################################################################
+
+Rscript ../Graphing_FittedModels.R $1_reads.testLD.ld $1_reads_FitParams.csv
+
+########################################################################
+# BACK TO CODE FOLDER                                                  #
+########################################################################
+
+cd ../
