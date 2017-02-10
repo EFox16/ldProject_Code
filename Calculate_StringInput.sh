@@ -77,7 +77,7 @@ NS=`cat $1_pos.txt | wc -l`
 # RETURN INPUT PARAMETERS                                              #
 ########################################################################
 
-echo "SUMMARY OF PARAMETERS:" > $1_PARAMETERS.txt
+echo "SUMMARY OF PARAMETERS:" > $1_INPUT.txt
 	echo >> $1_PARAMETERS.txt
 	echo "Number of Chromosomes="$N_SAM >> $1_PARAMETERS.txt
 	echo "Number of Repetitions="$N_REPS >> $1_PARAMETERS.txt

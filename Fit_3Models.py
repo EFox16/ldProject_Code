@@ -119,22 +119,22 @@ try:
 	EXP_init=resultEXP.params.valuesdict()['init']
 	EXP_lam=resultEXP.params.valuesdict()['lam']
 except:
-	EXP_init="EMPTY"
-	EXP_lam="EMPTY"
+	EXP_init=" "
+	EXP_lam=" "
 try:
 	GAM_k=resultGAM.params.valuesdict()['k']
 	GAM_t=resultGAM.params.valuesdict()['t']
 except:
-	GAM_k="EMPTY"
-	GAM_t="EMPTY"
+	GAM_k=" "
+	GAM_t=" "
 try:
 	POLY_a=resultPOLY.params.valuesdict()['a']
 	POLY_b=resultPOLY.params.valuesdict()['b']
 	POLY_c=resultPOLY.params.valuesdict()['c']
 except:
-	POLY_a="EMPTY"
-	POLY_b="EMPTY"
-	POLY_c="EMPTY"
+	POLY_a=" "
+	POLY_b=" "
+	POLY_c=" "
 
 FileName, Exten = os.path.splitext(sys.argv[1])
 FileName, Exten = os.path.splitext(FileName)
