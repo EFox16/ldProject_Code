@@ -78,18 +78,18 @@ NS=`cat $1_pos.txt | wc -l`
 ########################################################################
 
 echo "SUMMARY OF PARAMETERS:" > $1_INPUT.txt
-	echo >> $1_PARAMETERS.txt
-	echo "Number of Chromosomes="$N_SAM >> $1_PARAMETERS.txt
-	echo "Number of Repetitions="$N_REPS >> $1_PARAMETERS.txt
-	echo "Number of Individuals="$N_IND  >> $1_PARAMETERS.txt
-	echo "THETA="$THETA "RHO="$RHO >> $1_PARAMETERS.txt 
-	echo "Number of Sites="$N_SITES >> $1_PARAMETERS.txt
-	echo "Sequencing Depth="$SEQ_DEPTH >> $1_PARAMETERS.txt
-	echo "Error Rate="$ERR_RATE  >> $1_PARAMETERS.txt
-	echo "Number of Result Sites="$NS >> $1_PARAMETERS.txt
+	echo >> $1_INPUT.txt
+	echo "Number of Chromosomes="$N_SAM >> $1_INPUT.txt
+	echo "Number of Repetitions="$N_REPS >> $1_INPUT.txt
+	echo "Number of Individuals="$N_IND  >> $1_INPUT.txt
+	echo "THETA="$THETA "RHO="$RHO >> $1_INPUT.txt 
+	echo "Number of Sites="$N_SITES >> $1_INPUT.txt
+	echo "Sequencing Depth="$SEQ_DEPTH >> $1_INPUT.txt
+	echo "Error Rate="$ERR_RATE  >> $1_INPUT.txt
+	echo "Number of Result Sites="$NS >> $1_INPUT.txt
 if [ $# = 8 ]
 then
-	echo "Simulation Events="$SIMULATION_EVENTS >> $1_PARAMETERS.txt
+	echo "Simulation Events="$SIMULATION_EVENTS >> $1_INPUT.txt
 fi
 
 ########################################################################
