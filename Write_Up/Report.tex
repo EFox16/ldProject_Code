@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{indentfirst}
+\usepackage{graphicx, setspace}
+\usepackage{lineno}
+\usepackage[T1]{fontenc}
+
+
+\renewcommand{\rmdefault}{phv} % Arial
+\renewcommand{\sfdefault}{phv} % Arial
+
+\linespread{1.25}
+
+\usepackage{natbib}
+\bibliographystyle{abbrvnat}
+\setcitestyle{authoryear, open={(}, close={)}}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\title{	\huge \textsc{CMEE Mini-Project}
+		\\ [3.0cm]
+		\HRule{1pt} \\
+		\LARGE \textbf{Computational methods for detecting adaptive evolution from high-throughput sequencing data}
+		\HRule{1pt} \\ [0.2cm]
+		\Large \textsc{Emma Fox}
+		\\ [9.0cm]}
+
+\author{ 
+		Supervised by Dr. Matteo Fumagalli \\
+		}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\begin{linenumbers}
+
+\section{ABSTRACT:}
+
+\section{INTRODUCTION:}
+The aim of this project was to derive models from simulations of populations experiencing different demographic events and apply these models to discern the history of populations with unknown demographics. This was accomplished by using model-fitting techniques to describe the pattern of linkage disequilibrium (LD) decary in each scenario. Model fitting techniques like those used in this study, Non-linear least-squares (NLLS) minimization, are useful for studying patterns among different populations because it can adjust the parameters within equations to fit each population while still keeping the original behaviour of the function. Therefore, models developed from “perfect” scenarios can be applied to real data. Using model fitting also allows for multiple hypotheses to be compared against each other and their relative fits ranked, rather than simply testing for the significance of a model against a null hypothesis \citep{johnson2004model}.	
+
+When a pair of particular alleles at two or more loci are inherited together at a frequency greater than would be expected from the frequency each allele occurs at, those loci are said to be in linkage disequilibrium \citep{slatkin2008linkage}. In explanation, the chance of inheriting a haplotype of two particular alleles at two loci which are independent from each other will be the product of the frequencies each allele occurs within the population. Observations that depart from this rate of occurrence indicate these loci are linked, which can occur for a variety of reasons. 
+
+Areas of high LD can arise when genetic drift removes a haplotype from the gene pool, causing a relative increase in the occurrence of the other haplotypes \citep{slatkin2008linkage}. Similarly, population bottlenecks also often lead to an increase in whole genome LD because only a subsample of the genetic variation of the original population survives \citep{slatkin2008linkage}. The mixing of genetically distinct populations can also create LD patterns. If seperate populations are fixed for specific haplotypes, LD will not be detected at those areas because there is never any variation in inheritance expected. Should gene flow occur between these populations, LD patterns will become apparent as the seperate haplotypes are passed on to the resulting progeny \citep{slatkin2008linkage}.
+
+Over time, recombination from crossing over will effectively “un-link” loci that are in LD \citep{slatkin2008linkage}, but never at a rate exceeding a 50 PERCENT decrease in linked-ness (as measured by D, D’, or R2) for each generation \citep{weinberg1909vererbungsgesetze}. Crossing over can lead to a seperation of linked loci which is passed on to successive gametes. The accumulation of mutations can also lead to a decrease in LD as new variants dilute the frequency at which the old variants are inherited together.
+
+Whole-genome patterns of LD can be informative in determining past dynamics of a population \citep{hill1981estimation, park2012linkage}. High levels of LD could indicate a recent bottleneck or sudden admixture with a genetically unrelated neighboring population. Depressed levels of LD could indicate an expanding population with many new haplotype variants being created (CHECK ME).
+
+To determine these past events, it is necessary to use models simulating different patterns rather than rely on simple correlations/relationships \citep{park2012linkage}. These models can take into account events like bottlenecks and other growth patterns \citep{park2012linkage}. 
+
+Model comparison is useful in these situations because population histories are complex and often unknown. Using a series of different models allows for various possible patterns to be tested with relative ease and accuracy. 
+
+\section{METHODS:}
+In order to determine the past population of the samples, models of LD patterns were created using simulated genomes created via a pipeline. ms (CITATION) was used to simulate genome sequences for a population  that had remained a constant size, one that had been increasing exponentially in size, and one that had recently experienced a bottle neck. The information generated was fed into ANGSD (CITATION) to convert the  location of variable sites and individual haplotypes given into positions and reads in the glf format. The sequences were then analysed with ngsLD (CITATION) to calculate the distance between SNP pairs and various statistics describing the strength of the linkage. These resulting linkage data points were seperated into bins by the distance between base pairs, with each group corresponding to 50 base pairs of the sequence. The average linkage of each bin was calculated and paired with the mid-point of the base pair sequence for subsequent plotting and analysis (EXPLAIN WHY). Binning allowed for a more direct estimate of the strength of linkage along the gradient of distance by eliminating noise.  Three model curve families (exponential, gamma, and polynomial) were fit to the relationship between the R2 statistic and the distance between base pairs using the python package lmfit (CITATION), whose minimizer option employs NLLS fiting methods. The data and resulting parameters were passed to the R ggplot2 package to generate graphs showing the fitted curves over the original data. 
+
+The model simulations were run for 1Mbp sites for 20 individuals from each population with a mutation rate of 2x10-8, a read coverage of 20 reads, and a sequencing error rate of 0.01. The constant population contained 10,000 individuals. The expanding population experienced an exponential increase from 10,000 individuals to 30,000 individuals beginning 400 generations before the present time. The bottleneck population experienced an instantaneous decrease from 10,000 individuals to 2,000 individuals 800 generations ago. Generation time was set at 25 years. These conditions were chosen to mimic previously studied human populations with the expanding population being similar to the 'expansion of the European population after farming' and the bottleneck population corresponding to the Native American population decline. It was important to use realistic scenarios to fit the original models to in order to get realistic models. The 'ideal' component of these scenarios was the possibility of getting a near perfect read depth and sufficient sampling from each of the three populations. 
+
+The “best” model for each scenario was chosen as the model with the lowest Akaike Information Criterion (AIC). Model selection statistics reflect the goodness of fit of each model, or its ability to minimize the difference between the actual data and the model describing it. AIC was chosen in this scenario because it accounts for the goodness of fit as well as the complexity of the model, which removes the bias towards more parameterised models that other selection criterion suffer from \citep{johnson2004model}. AIC was chosen over the Bayesian Information Criterion (BIC) because BIC includes a term that corrects for differences in sample size but the simulations all had a similar number of samples after binning. 
+
+\section{RESULTS:}
+Figure X: Graphs plotting R2 vs distance between base pairs for A) the constant population simulation, B) the expanding population simulation, and C) the bottleneck population simulation. All possible fitted curves are overlaid on each graph. Equations of the line can be found in the supplementary material, table 1. 
+
+Table 1 shows the various AIC and significance values for each model in each simulation. 
+
+\section{DISCUSSION:}
+
+\section{CONCLUSION:}
+
+\end{linenumbers}
+
+\bibliography{Report.bib}
+
+\end{document}

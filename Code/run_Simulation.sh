@@ -8,8 +8,8 @@
 # CREATE RESULTS FOLDER with reference sequence                        #
 ########################################################################
 
-mkdir $1_Results
-cd $1_Results
+mkdir ../Results/$1
+cd ../Results/$1
 
 #Need to create fasta file
 Rscript -e 'cat(">reference\n",paste(rep("A",1e6),sep="", collapse=""),"\n",sep="")' > reference.fa 
@@ -40,12 +40,12 @@ MINMAF=$(echo "scale=2; 2/$N_SAM" | bc)
 ########################################################################
 
 if [ $# = 7 ]
-then  
-	/usr/bin/ms $N_SAM $N_REPS -t $THETA -r $RHO $N_SITES > $1.txt
+then
+	../../../Packages/msdir/ms $N_SAM $N_REPS -t $THETA -r $RHO $N_SITES > $1.txt
 elif [ $# = 8 ]
 then
 	SIMULATION_EVENTS=$8
-	/usr/bin/ms $N_SAM $N_REPS -t $THETA -r $RHO $N_SITES $SIMULATION_EVENTS > $1.txt
+	../../../Packages/msdir/ms $N_SAM $N_REPS -t $THETA -r $RHO $N_SITES $SIMULATION_EVENTS > $1.txt
 fi
 
 ########################################################################
@@ -53,10 +53,10 @@ fi
 ########################################################################
 
 #Convert to glf
-/usr/bin/msToGlf -in $1.txt -out $1_reads -regLen $N_SITES -singleOut 1 -depth $SEQ_DEPTH -err $ERR_RATE -pileup 0 -Nsites 0
+../../../Packages/angsd/misc/msToGlf -in $1.txt -out $1_reads -regLen $N_SITES -singleOut 1 -depth $SEQ_DEPTH -err $ERR_RATE -pileup 0 -Nsites 0
 
 #Gives full sequence 
-/usr/bin/angsd -glf $1_reads.glf.gz -fai reference.fa.fai -nInd $N_IND -doMajorMinor 1 -doPost 1 -doMaf 1 -doGeno 32 -out $1_reads.testLD -isSim 1 -minMaf $MINMAF
+../../../Packages/angsd/angsd -glf $1_reads.glf.gz -fai reference.fa.fai -nInd $N_IND -doMajorMinor 1 -doPost 1 -doMaf 1 -doGeno 32 -out $1_reads.testLD -isSim 1 -minMaf $MINMAF
 
 #Unzip output files
 gunzip -f $1_reads.testLD.geno.gz
@@ -69,7 +69,7 @@ zcat $1_reads.testLD.mafs.gz | cut -f 1,2 | tail -n +2 > $1_pos.txt
 NS=`cat $1_pos.txt | wc -l` 
 
 #Run ngsLD
-/usr/bin/ngsLD --verbose 1 --n_ind $N_IND --n_sites $NS --geno $1_reads.testLD.geno --probs --pos $1_pos.txt --max_kb_dist 1000 --min_maf $MINMAF --rnd_sample 0.05 > $1_reads.testLD.ld
+../../../Packages/ngsLD/ngsLD --verbose 1 --n_ind $N_IND --n_sites $NS --geno $1_reads.testLD.geno --probs --pos $1_pos.txt --max_kb_dist 1000 --min_maf $MINMAF --rnd_sample 0.05 > $1.ld
 
 
 ########################################################################
@@ -94,22 +94,22 @@ fi
 ########################################################################
 # BIN DATA  														   #
 ########################################################################
-Rscript ../Bin_ReadData.R $1_reads.testLD.ld
+Rscript ../../Code/Bin_ReadData.R $1.ld
 
 ########################################################################
 # MODEL FITTING                                                        #
 ########################################################################
 
-python ../Fit_ScaledPoly.py $1_reads.testLD.Binned.csv
+python ../../Code/Fit_5Models.py $1_Bin.csv
 
 ########################################################################
 # PLOT FITTED PARAMETERS 											   #
 ########################################################################
 
-Rscript ../Graphing_FittedModels.R $1_reads.testLD.Binned.csv $1_reads.testLD_FitParams.csv
+Rscript ../../Code/Graphing_5FittedModels.R $1_Bin.csv $1_Bin_FitParams.csv
 
 ########################################################################
 # BACK TO CODE FOLDER                                                  #
 ########################################################################
 
-cd ../
+cd ../../Code

@@ -28,4 +28,4 @@ Col6<-rep(0, length.out = (length(BinAvg)))
 Col7<-rep(0, length.out = (length(BinAvg)))
 
 OutPut<-data.frame(Col1, Col2, BinMid, BinAvg, Col5, Col6, Col7)
-write.table(OutPut, file=paste(FileName,".Binned.csv", sep = ""), col.names = F, row.names = F)
+write.table(OutPut, file=paste(FileName,"_Bin.csv", sep = ""), col.names = F, row.names = F)
