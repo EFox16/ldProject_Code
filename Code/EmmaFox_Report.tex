@@ -54,7 +54,7 @@ The aim of this project was to discover whether it would be possible to describe
 \subsection{Linkage Disequilibrium}
 Population demographic rates affect the chance of two alleles being inherited together by determining the amount of variation present or the frequency with which recombination events occur, and the number of resulting gametes passed on, per generation \citep{hartl1997principles, reich2001linkage}. Areas of high LD can arise when genetic drift removes a haplotype from the gene pool, causing a relative increase in the occurrence of the other haplotypes passed on to the next generation \citep{slatkin2008linkage}. Similarly, population bottlenecks also often lead to an increase in whole genome LD because only a subsample of the genetic variation of the original population survives \citep{pritchard2001linkage, slatkin2008linkage}. The mixing of genetically distinct populations can also create LD patterns. If separate populations are fixed for specific haplotypes, LD will not be detected at those areas because there is never any variation in inheritance expected. Should gene flow occur between these populations, LD patterns will become apparent as the separate haplotypes are passed on to the resulting progeny \citep{pritchard2001linkage, slatkin2008linkage}.
 
-Over time, recombination from crossing over will effectively 'un-link' loci that are in LD \citep{hartl1997principles, slatkin2008linkage}, but never at a rate exceeding a 50\% decrease in linked-ness (as measured by D, D', or r\textsuperscript2) for each generation \citep{weinberg1909vererbungsgesetze}. Crossing over can lead to a separation of linked loci which is passed on to successive gametes. Naturally, the farther apart a pair of single nucleotide polymorphisms (SNPs) is from each other, the greater the chance a recombination event will occur between them \citep{Park, 2012}. This is why the strength of linkage tends to decrease as the distance between loci increases. The accumulation of mutations can also lead to a decrease in LD as new variants dilute the frequency at which the old variants are inherited together.
+Over time, recombination from crossing over will effectively 'un-link' loci that are in LD \citep{hartl1997principles, slatkin2008linkage}, but never at a rate exceeding a 50\% decrease in linked-ness (as measured by D, D', or r\textsuperscript2) for each generation \citep{weinberg1909vererbungsgesetze}. Crossing over can lead to a separation of linked loci which is passed on to successive gametes. Naturally, the farther apart a pair of single nucleotide polymorphisms (SNPs) is from each other, the greater the chance a recombination event will occur between them \citep{park2012linkage}. This is why the strength of linkage tends to decrease as the distance between loci increases. The accumulation of mutations can also lead to a decrease in LD as new variants dilute the frequency at which the old variants are inherited together.
 
 \subsection{Analysing Linkage Disequilibrium Information}
 
@@ -108,21 +108,21 @@ It was found that all three simulated populations were best fit by the third ord
 
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale = 1]{Figures/Constant_Bin_FitParams_ReportFigure.pdf}
+\includegraphics[scale = 1]{../Results/Fitted_Graphs/Constant_Bin_FitParams_ReportFigure.pdf}
 \caption{\small Plots of each of the 5 fitted curves for the simulated constant size population in descending order from the best fit, a)third order polynomial, to the least best fit model, e) gamma equation. Fit parameters for each equation can be found in table 1 of the supplementary material.}
 \end{center}
 \end{figure}
 
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale = 1]{Figures/Expand_Bin_FitParams_ReportFigure.pdf}
+\includegraphics[scale = 1]{../Results/Fitted_Graphs/Expand_Bin_FitParams_ReportFigure.pdf}
 \caption{\small Plots of each of the 5 fitted curves for the simulated expanding population in descending order from the best fit, a)third order polynomial, to the least best fit model, e) gamma equation. Fit parameters for each equation can be found in table 1 of the supplementary material.}
 \end{center}
 \end{figure}
 
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale = 1]{Figures/Bottleneck_Bin_FitParams_ReportFigure.pdf}
+\includegraphics[scale = 1]{../Results/Fitted_Graphs/Bottleneck_Bin_FitParams_ReportFigure.pdf}
 \caption{\small Plots of each of the 5 fitted curves for simulated population that had undergone a bottleneck in descending order from the best fit, a)third order polynomial, to the least best fit model, e) gamma model. Fit parameters for each equation can be found in table 1 of the supplementary material.}
 \end{center}
 \end{figure}
@@ -156,7 +156,7 @@ When the best fit model for each population was plotted against each other, the 
 
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale = 1]{Figures/Comparison_ModelPlot.pdf}
+\includegraphics[scale = 1]{../Results/Fitted_Graphs/Comparison_ModelPlot.pdf}
 \caption{\small Plot of the best fit model (third order polynomial) for each model for each of the 5 data sets (constant simulation population, expanding simulation population, bottleneck simulation population, European sample, and African sample). The parameters of each equation can be found in table 1 of the supplementary material.}
 \end{center}
 \end{figure}
@@ -172,7 +172,7 @@ This study did not find a difference in the pattern of LD decay along a section 
 \end{linenumbers}
 
 \newpage
-\bibliography{Report.bib}
+\bibliography{EmmaFox_Report.bib}
 
 \newpage
 \section{Supplementary Materials}

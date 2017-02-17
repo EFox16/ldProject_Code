@@ -46,20 +46,33 @@ b3<-Model_Data[16,3]
 c3<-Model_Data[17,3]
 d3<-Model_Data[18,3]
 
+#Set position of text
+if (FileName=="Bottleneck_Bin_FitParams"){
+  h<-0.8  
+} else if (FileName=="LWK_Bin_FitParams"){
+  h<-0.25  
+} else if (FileName=="TSI_Bin_FitParams"){
+  h<-0.35
+} else if (FileName=="Expand_Bin_FitParams"){
+  h<-0.25
+} else {
+  h<-0.5
+}
+
 #Plot the curves
 #Plot the initial graph of data points
-FitPlot<-ggplot(LD_Data, aes(x=Distance, y=R2)) + geom_point()
+FitPlot<-ggplot(LD_Data, aes(x=Distance, y=R2)) + geom_point() + labs(x="Distance (in 100 kilo-bases)",y="r^2") 
 #Add each of the 5 curves to their own plot, color code by equation, add a graph title, and AIC value
 EXPPlot<-FitPlot + stat_function(fun=function(x) init * exp(lam * x), geom="line", colour="red", size=1) + 
-  ggtitle("c) Exponential Decay")  + geom_text(data = NULL, x = 0.6, y = 0.8, label = paste("AIC =", aicEXP, sep=" "))
+  ggtitle("c) Exponential Decay")  + geom_text(data = NULL, x = 0.6, y = h, label = paste("AIC =", aicEXP, sep=" "))
 GAMPlot<-FitPlot + stat_function(fun=function(x) exp(x * k) * x^t, geom="line", colour="yellow", size=1) + 
-  ggtitle("e) Gamma") + geom_text(data = NULL, x = 0.6, y = 0.8, label = paste("AIC =", aicGAM, sep=" "))
+  ggtitle("e) Gamma") + geom_text(data = NULL, x = 0.6, y = h, label = paste("AIC =", aicGAM, sep=" "))
 LINPlot<-FitPlot + stat_function(fun=function(x) a1 + b1*x, geom="line", colour="green", size=1) + 
-  ggtitle("d) Linear") + geom_text(data = NULL, x = 0.6, y = 0.8, label = paste("AIC =", aicLIN, sep=" "))
+  ggtitle("d) Linear") + geom_text(data = NULL, x = 0.6, y = h, label = paste("AIC =", aicLIN, sep=" "))
 POLY2Plot<-FitPlot + stat_function(fun=function(x) a2 + b2*x + c2*x^2, geom="line", colour="blue", size=1) + 
-  ggtitle("b) Quadratic") + geom_text(data = NULL, x = 0.6, y = 0.8, label = paste("AIC =", aicPOLY2, sep=" "))
+  ggtitle("b) Quadratic") + geom_text(data = NULL, x = 0.6, y = h, label = paste("AIC =", aicPOLY2, sep=" "))
 POLY3Plot<-FitPlot + stat_function(fun=function(x) a3 + b3*x + c3*x^2 + d3*x^3, geom="line", colour="purple", size=1) + 
-  ggtitle("a) Cubic") + geom_text(data = NULL, x = 0.6, y = 0.8, label = paste("AIC =", aicPOLY3, sep=" "))
+  ggtitle("a) Cubic") + geom_text(data = NULL, x = 0.6, y = h, label = paste("AIC =", aicPOLY3, sep=" "))
 
 #Save to jpg
 pdf(file=paste(Path,"/",FileName,"_ReportFigure.pdf", sep = ""))

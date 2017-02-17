@@ -49,7 +49,7 @@ B_c<-B_Data[17,3]
 B_d<-B_Data[18,3]
 
 #Plot the axis
-FitPlot<-ggplot(Axis_Data, aes(x=Distance, y=R2)) + geom_blank()
+FitPlot<-ggplot(Axis_Data, aes(x=Distance, y=R2)) + geom_blank() + labs(x="Distance (in 100 kilo-bases)",y="r^2")
 #Add in each of the curves
 FitPlot<-FitPlot + try(stat_function(fun=function(x) T_a + T_b*x + T_c*x^2 + T_d*x^3, geom="line", aes(colour="European"), size=1.5), silent = T)
 FitPlot<-FitPlot + try(stat_function(fun=function(x) L_a + L_b*x + L_c*x^2 + L_d*x^3, geom="line", aes(colour="African"), size=1.5), silent = T)

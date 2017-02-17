@@ -41,7 +41,7 @@ d3<-Model_Data[18,3]
 
 #Plot the curves
 #Plot the initial graph of data points
-FitPlot<-ggplot(LD_Data, aes(x=Distance, y=R2)) + geom_point()
+FitPlot<-ggplot(LD_Data, aes(x=Distance, y=R2)) + geom_point() + labs(x="Distance (in 100 kilo-bases)",y="r^2")
 #Add each of the 5 curves and color code by equation
 FitPlot<-FitPlot + try(stat_function(fun=function(x) init * exp(lam * x), geom="line", aes(colour="EXP"), size=1), silent = T)
 FitPlot<-FitPlot + try(stat_function(fun=function(x) exp(x * k) * x^t, geom="line", aes(colour="GAM"), size=1), silent = T) 

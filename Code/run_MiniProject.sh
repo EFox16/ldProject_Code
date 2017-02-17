@@ -36,11 +36,11 @@ bash run_Simulation.sh Bottleneck 40 1 800 1000000 20 0.01 "-eN 0 0.2 -eN 0.02 1
 ########################################################################
 
 #Unzip and run analysis on the LWK data file. Analysis includes binning, fitting, and plotting.
-# gunzip Data/LWK.ld.gz
+gunzip ../Data/LWK.ld.gz
 bash run_DataAnalysis.sh LWK
 
 #Unzip and run analysis on the TSI data file. Analysis includes binning, fitting, and plotting.
-# gunzip Data/TSI.ld.gz
+gunzip ../Data/TSI.ld.gz
 bash run_DataAnalysis.sh TSI
 
 ########################################################################
@@ -53,35 +53,4 @@ Rscript Comparing_Curves.R
 ########################################################################
 # COMPILE LaTeX REPORT                                                 #
 ########################################################################
-#ADAPTED FROM CODE PROVIDED TO CMEE STUDENT BY SAMRAAT PAWAAR
-
-#~ rm ../Write_Up/EmmaFox_Report.pdf # remove existing pdf
-
-#~ pdflatex ../Write_Up/EmmaFox_Report.tex
-#~ # pdflatex $1.tex
-#~ bibtex ../Write_Up/EmmaFox_Report
-#~ pdflatex ../Write_Up/EmmaFox_Report.tex
-#~ pdflatex ../Write_Up/EmmaFox_Report.tex
-
-#~ #Now open pdf if file exists and is non-empty
-#~ if [ -s ../Write_Up/EmmaFox_Report.pdf ] 
-#~ then
-	#~ evince ../Write_Up/EmmaFox_Report.pdf &
-#~ else
-	#~ echo "../Write_Up/EmmaFox_Report.pdf is empty."
-#~ fi
-
-#~ ## Cleanup
-#~ rm -f *~
-#~ rm -f *.aux
-#~ rm -f *.blg
-#~ rm -f *.log
-#~ rm -f *.nav
-#~ rm -f *.out
-#~ rm -f *.snm
-#~ rm -f *.toc
-#~ rm -f *.vrb
-#~ rm -f *.bbl
-#~ rm -f *.dvi
-#~ rm -f *.lot
-#~ rm -f *.lof
+bash CompileLaTeX.sh EmmaFox_Report

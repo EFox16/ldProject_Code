@@ -1,11 +1,11 @@
 Repository for LD MiniProject (Linked to github)
 
-########################################################################
-# DEPENDENCIES														   #
-########################################################################
+#######################################################################
+# DEPENDENCIES														  #
+#######################################################################
 Shell Scripting
 ***Within the project repository, create a folder called "Packages" on the
-same level as Code, Write_Up, and SandBox***
+same level as Code and SandBox***
 Download and install both ANGSD and htslib following the directions here:
 	https://github.com/ANGSD/angsd
 Download and install ms from this link:
@@ -37,12 +37,21 @@ import numpy as np
 import os
 import csv
 
-########################################################################
-# TABLE OF CONTENTS:												   #
-########################################################################
+#######################################################################
+# DATA FILES                                                          #
+#######################################################################
+Create a "Data" folder on the same level as Code and SandBox.
+Put LWK.ld.gz and TSI.ld.gz in this folder. There is no need to extract them,
+there is a line in run_MiniProject.sh that will unzip them and run the code.
+
+
+#######################################################################
+# TABLE OF CONTENTS:												  #
+#######################################################################
 ├── Code
 │   ├── Bin_ReadData.R - Breaks up .ld files into bins by length of successive 50 base pairs 
 │   ├── Comparing_Curves.R - Plots a graph for the report that compares the best fit model of all 5 data sets
+│   ├── CompileLaTeX.sh - Compiles the LaTeX file report and places it in results
 │   ├── EmmaFox_Report.bib - Bibtex list for LaTeX report code
 │   ├── EmmaFox_Report.tex - LaTeX code file for report submission
 │   ├── Fit_5Models.py - Fits parameters from five models (exponential decay, gamma, linear, quadratic, cubic) to _Bin.csv files.
