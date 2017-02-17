@@ -13,12 +13,12 @@ Download and install ms from this link:
 	Instructions can be found in the msdoc.pdf
 Download and install samtools from this link:
 	http://www.htslib.org/download/
-Download the ngsLD zip file attached to the email. Extract it into the 
-packages folder, cd into the new ngsLD folder, and run the command "make"
+Download the zip file attached to the email. Extract it into the 
+packages folder, cd into the new folder, and run the command "make"
 
 
 Your packages folder should now contain files called "angsd", "htslib", "msdir", 
-"samtools-1.3.1", and "ngsLD"
+"samtools-1.3.1", and a folder corresponding to the package in the email
 Paths to these packages (specifically those in run_Simulation.sh) have been 
 set up as relative paths from the Code folder to the location of the desired 
 function in the packages folder.
