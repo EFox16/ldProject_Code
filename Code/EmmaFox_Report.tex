@@ -34,7 +34,7 @@
 
 \author{ 
 		Supervised by Dr. Matteo Fumagalli \\ \\
-		Word Count: \\
+		Word Count: 3061 (+ 411 Reference List) (+110 Supplementary Table)\\
 		}
 \date{}
 
@@ -60,7 +60,7 @@ Over time, recombination from crossing over will effectively 'un-link' loci that
 
 Studying the strength of linkage disequilibrium is done with a variety of approaches. Many studies compare levels of LD between populations by quantifying the average maximum distance from a SNP that is above a linkage threshold \citep{reich2001linkage, gray2009linkage}. Knowing the length of these strongly linked sections can determine the regions of interest for a genome-wide association study \citep{reich2001linkage, mcrae2005modeling}. If the character in question appears with a marker gene x\% of the time, knowing the distance around that gene that corresponds with that level of linkage will set the bounds of the possible location for the causal mutation. Patterns of LD can also be informative in extrapolating unknown past dynamics of a population \citep{hill1981estimation, hernandez2007demographic, park2012linkage}. High levels of LD in one population relative to a stable population could indicate a recent bottleneck while depressed levels of LD could indicate an expanding population with many new haplotype variants. 
 
-It is also possible to determine these past events by examining the rate at which the strength of LD decays relative to the distance between points for large sections of the genome \citep{hernandez2007demographic, park2012linkage}. Expanding populations, for example, will show a quicker decay rate because their greater number of crossing over events and mutations mean even close SNP pair have a high chance of becoming un-linked. Previous studies of LD decay have involved complex mechanistic models based on theoretical population behaviour \citep{park2012linkage}.  However, it would ease the initial assessment of unknown population history if these patterns could be described with a set of simple phenomenological curves rather than theoretical mechanistic models. This study hypothesised that the pattern of LD decay, in addition to relative levels of LD and the rate of LD decay, varied between demographic scenarios. While the pattern of decay is often represented as an exponential curve, the influence of the different demographic events could change the behaviour of the different decay curves. 
+It is also possible to determine these past events by examining the rate at which the strength of LD decays relative to the distance between points for large sections of the genome \citep{hernandez2007demographic, park2012linkage}. Expanding populations, for example, will show a quicker decay rate because their greater number of crossing over events and mutations mean even close SNP pair have a high chance of becoming un-linked. Previous studies of LD decay have used complex mechanistic models based on theoretical population behaviour to return quite accurate predictions of LD decay curves \citep{park2012linkage}.  However, it would ease the initial assessment of unknown population history if these patterns could be described with a set of simple phenomenological curves rather than theoretical mechanistic models. This study hypothesised that the pattern of LD decay, in addition to relative levels of LD and the rate of LD decay, varied between demographic scenarios. While the pattern of decay is often represented as an exponential curve, the influence of the different demographic events could change the behaviour of the different decay curves. 
 
 \subsection{Model Fitting}
 To test this, LD data was simulated for populations at a constant size, populations that were expanding, and populations that had undergone a bottleneck. Five simple model curves were then fit to these simulations using non-linear least-squares minimisation. Model fitting techniques like the one used in this study are useful for studying patterns among different populations. This is because it can adjust the parameters within equations to fit each population while still keeping the original behaviour of the function. Therefore, models developed from 'perfect' scenarios can be applied to real data. Using model fitting also allows for multiple hypotheses to be compared against each other and their relative fits ranked, rather than simply testing for the significance of a model against a null hypothesis \citep{johnson2004model, gray2009linkage}. 	
@@ -68,7 +68,7 @@ To test this, LD data was simulated for populations at a constant size, populati
 \section{METHODS:}
 
 \subsection{Running the Simulations}
-LD simulations often yield data that is highly similar to that observed from populations the simulations are based on and are therefore a useful tool for studying the behaviour of LD in different demographic scenarios \citep{mcrae2005modeling}. LD data for the simulated genomes was generated and analysed using a series of different programs in a single pipeline. ms \citep{hudson2002generating} was used to simulate the initial genome information for the sample individuals from each of the three populations. \citep{hudson2002generating} returned a list of the location of each of the variable sites along with their haplotypes. This information was fed into ANGSD \citep{korneliussen_angsd:_2014} and converted into a glf format that included the full genome sequences. The sequences were then analysed with ngsLD (CITATION) to calculate the distance between SNP pairs and various statistics describing the strength of the linkage. For this study, the squared correlation coefficient (r\textsuperscript2) was used. The (r\textsuperscript2) measure derives from the \emph{D} statistic which is the difference between the expected occurrence of the haplotype (calculated as the product of the constituent allele frequencies) and the actual frequency of occurrence. (r\textsuperscript2) differs from \emph{D} in that it acts as a correlation coefficient for the concurrence of the two alleles \citep{slatkin2008linkage}. These resulting linkage data points were separated into bins by the distance between base pairs, with each group corresponding to 50*n-50*(n-1) base pairs apart. The average linkage of each bin was calculated and paired with the mid-point of the base pair sequence for subsequent plotting and analysis. Binning allowed for a more direct estimate of the strength of linkage along the gradient of distance by eliminating noise. It also allowed for easier visualisation of the resulting curves. 
+LD simulations often yield data that is highly similar to that observed from populations the simulations are based on and are therefore a useful tool for studying the behaviour of LD in different demographic scenarios \citep{mcrae2005modeling}. LD data for the simulated genomes was generated and analysed using a series of different programs in a single pipeline. ms \citep{hudson2002generating} was used to simulate the initial genome information for the sample individuals from each of the three populations. \citep{hudson2002generating} returned a list of the location of each of the variable sites along with their haplotypes. This information was fed into ANGSD \citep{korneliussen_angsd:_2014} and converted into a glf format that included the full genome sequences. The sequences were then analysed with ngsLD (publication in preparation) to calculate the distance between SNP pairs and various statistics describing the strength of the linkage. For this study, the squared correlation coefficient (r\textsuperscript2) was used. The (r\textsuperscript2) measure derives from the \emph{D} statistic which is the difference between the expected occurrence of the haplotype (calculated as the product of the constituent allele frequencies) and the actual frequency of occurrence. (r\textsuperscript2) differs from \emph{D} in that it acts as a correlation coefficient for the concurrence of the two alleles \citep{slatkin2008linkage}. These resulting linkage data points were separated into bins by the distance between base pairs, with each group corresponding to 50*n-50*(n-1) base pairs apart. The average linkage of each bin was calculated and paired with the mid-point of the base pair sequence for subsequent plotting and analysis. Binning allowed for a more direct estimate of the strength of linkage along the gradient of distance by eliminating noise. It also allowed for easier visualisation of the resulting curves. 
 
 \subsection{Curve Fitting}
 Five models (equations 1-5), which included an exponential, a gamma, a linear, and two polynomial curves, were fit to the relationship between the r\textsuperscript2 statistic and the distance between base pairs. The exponential decay model (equation 1) is a mechanistic model. This was to additionally evaluate the usage of a simple mechanistic models versus phenomenological models (equations 2-5) without direct biological underpinning. The exponential decay function describes the decline from an initial value. In this case, the r\textsuperscript2 value decreases from perfect linkage score of 1 at a rate related to the distance between them by $\lambda$ . 
@@ -101,10 +101,10 @@ r^2 = a + bx + cx^2 + dx^3
 The model simulations were run for 1Mbp sites for 20 individuals from each population with a mutation rate of 2x10-8, a read coverage of 20 reads, and a sequencing error rate of 0.01. The constant population contained 10,000 individuals. The expanding population experienced an exponential increase from 10,000 individuals to 30,000 individuals beginning 400 generations before the present time. The bottleneck population experienced an instantaneous decrease from 10,000 individuals to 2,000 individuals 800 generations ago. Generation time was set at 25 years. As the number of linked loci pairs in the specified region would be unmanageable, 5\% of the data was randomly sampled for subsequent analysis. These conditions were chosen to mimic previously studied human populations with the expanding population being similar to the 'expansion of the European population after farming' and the bottleneck population corresponding to the Native American population decline. It was important to use realistic scenarios to fit the original models in order for the resultant models to be applicable to other human data sets. The 'ideal' component of these scenarios was the possibility of getting a near perfect read depth and sufficient sampling from each of the three populations.
 
 \subsection{Real Data Sets}
-Data for this project was sourced from the 1000 Genomes Project \citep{10002015global}. The simulated LD decay curves were compared to data collected from African and European populations. Samples of both copies of a 1Mbp region of human chromosome 2 were collected from 20 individuals in each population. ngsLD {} was used to analyse the data files and 1\% of the data was randomly sampled for subsequent analysis.     
+Data for this project was sourced from the 1000 Genomes Project \citep{10002015global}. The simulated LD decay curves were compared to data collected from African and European populations. Samples of both copies of a 1Mbp region of human chromosome 2 were collected from 20 individuals in each population. ngsLD was used to analyse the data files and 1\% of the data was randomly sampled for subsequent analysis.     
 
 \section{RESULTS:}
-It was found that all three simulated populations were best fit by the third order polynomial function (Figures 1-3). The two data sets from real populations were also best fit by this model (Table 1).   
+It was found that all three simulated populations were best fit by the third order polynomial function (Figures 1-3). The quadratic curves showed the next best fit with the exponential decay curve, linear function, and gamma curve fitting progressively less well. The two data sets from real populations also showed the same pattern in relative goodness-of-fit for each of the curves (Table 1).   
 
 \begin{figure}[htp]
 \begin{center}
@@ -151,7 +151,9 @@ European & Exponential & -12418    \\
 \end{tabular}
 \end{table}
 
-When the best fit model for each population was plotted against each other, the simulation curves showed the expected relative values for each situation (Figure 4). The expanding population showed lower levels of LD and the bottleneck population showed higher levels of LD than the constant population. The European population sample curve showed the highest level of LD overall. The African population sample curve fell in between the bottleneck and constant population for the majority bins. 
+When the best fit model for each population was plotted against each other, the simulation curves showed the expected relative values for each situation (Figure 4). The expanding population showed lower levels of LD and the bottleneck population showed higher levels of LD than the constant population. 
+
+The European population sample curve showed the highest level of LD overall. The African population sample curve fell in between the bottleneck and constant population for the majority bins. 
 
 
 \begin{figure}[htp]
@@ -161,13 +163,19 @@ When the best fit model for each population was plotted against each other, the 
 \end{center}
 \end{figure}
 
+\newpage
 \section{DISCUSSION:}
 
-Many studies have used relative levels of LD to infer unknown population histories \citep{reich2001linkage,gray2009linkage}, confirming the usefulness of a comparative approach. In this study, the European population had the highest relative level of LD. This fits with previous findings that Europeans have high levels of LD potentially due a number of potential past population contractions \citep{reich2001linkage}. The African population shows less relative LD than the European population which matches with previous results that found the strength of LD in African populations to be generally lower than those in European populations \citep{reich2001linkage}. While the relative amount of LD in the two real data populations is correct, the placement of the simulation lines in relation to the African line may be questionable. There is support for a European founder effect or bottleneck after migration out of Africa \citep{reich2001linkage} but African populations are generally considered to have been historically expanding \citep{kruglyak1999prospects}. However, the African fitted model shows levels of LD greater than both the expanding and constant simulated populations. It actually falls quite close to the bottleneck simulation model. This suggests that the simulations may need further refinement to more accurately reflect levels of LD after those demographic events in human populations \citep{pritchard2001linkage}.      
+\subsection{Analysis of Results}
 
-This study did not find a difference in the pattern of LD decay along a section of the human genome for populations with different histories but it does lead into various opportunities for further study. While each of the data sets used in this project were best fit by the same simple curve, there remains a possibility of testing the fit for curves of other families. There is also an option to explore LD behaviour using site frequency spectrum (SFS) as was done in \cite{gray2009linkage} and fitting the curves with a maximum likelihood method as was suggested by \cite{park2012linkage} and used in \cite{hernandez2007demographic}. It may also be possible to use the curves created from a new, more accurate simulation set to establish the relationship between various population characteristics and the fit parameters from the cubic order model (Equation 5). This relationship could then be used to extrapolate population characteristics of unknown populations from fitting the cubic model to their LD decay curves. The relationship between LD and demographic history has become a popular topic in the study of genomics with the advent of next generation sequencing and remains an important field of study with its applications for association mapping studies and as it expands to wild populations as well \citep{slate2007admixture, gray2009linkage} 
+Each data set in this study was best fit by the cubic model which suggests a similar pattern of decay in each demographic situation. The mechanistic exponential decay curves did fit better than the linear and gamma models but not as well as either of the polynomial curves.  In this study, the European population had the highest relative level of LD. This fits with previous findings that Europeans have high levels of LD potentially due a number of potential past population contractions \citep{reich2001linkage}. The African population shows less relative LD than the European population which matches with previous results that found the strength of LD in African populations to be generally lower than those in European populations \citep{reich2001linkage}. While the relative amount of LD in the two real data populations is correct, the placement of the simulation lines in relation to the African line may be questionable. There is support for a European founder effect or bottleneck after migration out of Africa \citep{reich2001linkage} but African populations are generally considered to have been historically expanding \citep{kruglyak1999prospects}. However, the African fitted model shows levels of LD greater than both the expanding and constant simulated populations. It actually falls quite close to the bottleneck simulation model. This suggests that the simulations may need further refinement to more accurately reflect levels of LD after those demographic events in human populations \citep{pritchard2001linkage}.       
+
+
+\subsection{Opportunities for Further Study}
+Many studies have used relative levels of LD to infer unknown population histories \citep{reich2001linkage,gray2009linkage, park2012linkage}, confirming the usefulness of comparative approaches. While this study was not able to offer further insights into the behaviour of LD decay in different demographic scenarios, it does lead into various opportunities for further study. While each of the data sets used in this project were best fit by the same simple curve, there remains a possibility of testing the fit for curves of other families. There is also an option to explore LD behaviour using site frequency spectrum (SFS) as was done in \cite{gray2009linkage} and fitting the curves with a maximum likelihood method as was suggested by \cite{park2012linkage} and used in \cite{hernandez2007demographic}. It may also be possible to use the curves created from a new, more accurate simulation set to establish the relationship between various population characteristics and the fit parameters from the cubic order model. This relationship could then be used to extrapolate population characteristics of unknown populations from fitting the cubic model to their LD decay curves. The relationship between LD and demographic history has become a popular topic in the study of genomics with the advent of next generation sequencing and remains an important field of study with its applications for association mapping studies and as it expands to wild populations as well \citep{slate2007admixture, gray2009linkage}. 
 
 \section{Acknowledgements:}
+I would like to thank Dr. Matteo Fumagalli also of the Imperial College London Biological Sciences Department for his help and supervision on this project. His knowledge of historic human population demographics and linkage disequilibrium theory as well assistance in using a variety of simulation packages and programs was invaluable in the completion of this project 
 
 \end{linenumbers}
 
@@ -187,7 +195,7 @@ Data       & Model       & Variable Name              & Fit Parameter \\
 \endhead
 \hline
 \endfoot
-Constant   & Exponential & r\textsuperscript2 initial & 0.17          \\ 
+Constant   & Exponential & $r^2_0$ 					  & 0.17          \\ 
            &             & $\lambda$                  & -1.63         \\ 
            & Gamma       & k                          & -4.79         \\ 
            &             & t                          & 0.59          \\  
@@ -200,7 +208,7 @@ Constant   & Exponential & r\textsuperscript2 initial & 0.17          \\
            &             & b                          & -0.91         \\  
            &             & c                          & 1.57          \\  
            &             & d                          & -0.86         \\  \hline
-Expanding  & Exponential & r\textsuperscript2 initial & 0.10          \\  
+Expanding  & Exponential & $r^2_0$					  & 0.10          \\  
            &             & $\lambda$                  & -0.91         \\  
            & Gamma       & k                          & -3.86         \\  
            &             & t                          & 1.06          \\  
@@ -213,7 +221,7 @@ Expanding  & Exponential & r\textsuperscript2 initial & 0.10          \\
            &             & b                          & -0.52         \\  
            &             & c                          & 0.95          \\  
            &             & d                          & -0.53         \\  \hline
-Bottleneck & Exponential & r\textsuperscript2 initial & 0.23          \\  
+Bottleneck & Exponential & $r^2_0$ 					  & 0.23          \\  
            &             & $\lambda$                  & -1.34         \\  
            & Gamma       & k                          & -3.66         \\  
            &             & t                          & 0.51          \\  
@@ -226,7 +234,7 @@ Bottleneck & Exponential & r\textsuperscript2 initial & 0.23          \\
            &             & b                          & -0.83         \\  
            &             & c                          & 1.31          \\  
            &             & d                          & -0.70         \\  \hline
-African    & Exponential & r\textsuperscript2 initial & 0.17          \\  
+African    & Exponential & $r^2_0$ 					  & 0.17          \\  
            &             & $\lambda$                  & -0.82         \\  
            & Gamma       & k                          & -3.30         \\  
            &             & t                          & 0.71          \\  
@@ -239,7 +247,7 @@ African    & Exponential & r\textsuperscript2 initial & 0.17          \\
            &             & b                          & -0.55         \\  
            &             & c                          & 0.89          \\  
            &             & d                          & -0.48         \\  \hline
-European   & Exponential & r\textsuperscript2 initial & 0.24          \\  
+European   & Exponential & $r^2_0$					  & 0.24          \\  
            &             & $\lambda$                  & -0.82         \\  
            & Gamma       & k                          & -2.81         \\  
            &             & t                          & 0.54          \\  
