@@ -1,7 +1,7 @@
 Repository for LD MiniProject (Linked to github)
 
 ################################################################
-# DEPENDENCIES						     					   #
+# DEPENDENCIES                                                 #
 ################################################################
 Shell Scripting
 ***Within the project repository, create a folder called "Packages" on the
@@ -46,7 +46,7 @@ there is a line in run_MiniProject.sh that will unzip them and run the code.
 
 
 ###############################################################
-# TABLE OF CONTENTS:								          #
+# TABLE OF CONTENTS:                                          #
 ###############################################################
 ├── Code
 │   ├── Bin_ReadData.R - Breaks up .ld files into bins by length of successive 50 base pairs 
