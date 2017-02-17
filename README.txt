@@ -1,8 +1,8 @@
 Repository for LD MiniProject (Linked to github)
 
-#####################################################################
-# DEPENDENCIES													    #
-#####################################################################
+################################################################
+# DEPENDENCIES						     					   #
+################################################################
 Shell Scripting
 ***Within the project repository, create a folder called "Packages" on the
 same level as Code and SandBox***
@@ -45,9 +45,9 @@ Put LWK.ld.gz and TSI.ld.gz in this folder. There is no need to extract them,
 there is a line in run_MiniProject.sh that will unzip them and run the code.
 
 
-####################################################################
-# TABLE OF CONTENTS:									           #
-####################################################################
+###############################################################
+# TABLE OF CONTENTS:								          #
+###############################################################
 ├── Code
 │   ├── Bin_ReadData.R - Breaks up .ld files into bins by length of successive 50 base pairs 
 │   ├── Comparing_Curves.R - Plots a graph for the report that compares the best fit model of all 5 data sets
